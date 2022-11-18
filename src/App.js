@@ -14,7 +14,7 @@ const MyStack = () => {
         <Stack.Screen
           name="TripReviewPage"
           component={TripReviewPage}
-          options={{ title: 'Welcome' }}
+          options={{ title: 'TripReview' }}
         />
         <Stack.Screen name="TripFilter" component={TripFilterPage} />
       </Stack.Navigator>
