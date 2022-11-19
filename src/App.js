@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TripFilterPage from './page/TripFilterPage'
-import TripReviewPage from './page/TripReviewPage'
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import TripFilterPage from './page/TripFilterPage';
+import TripReviewPage from './page/TripReviewPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +13,7 @@ const MyStack = () => {
         <Stack.Screen
           name="TripReviewPage"
           component={TripReviewPage}
-          options={{ title: 'TripReview' }}
+          options={{title: 'TripReview'}}
         />
         <Stack.Screen name="TripFilter" component={TripFilterPage} />
       </Stack.Navigator>
@@ -23,9 +22,7 @@ const MyStack = () => {
 };
 
 function App() {
-  return (
-    MyStack()
-  );
+  return MyStack();
 }
 
 export default App;
