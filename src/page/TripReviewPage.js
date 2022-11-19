@@ -1,19 +1,57 @@
 import * as React from 'react';
-import {Button, Text, View} from 'react-native';
-import {TripFilter} from '../routing/routes';
-import {useSelector} from 'react-redux';
+import {useState} from 'react';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {TripFilter, TripReview} from '../routing/routes';
+import Button from '../components/Button';
+import DropDown from '../components/DropDown';
+import Title from '../components/Label';
 
 const TripReviewPage = ({navigation}) => {
-  const user = useSelector(state => state.userReducer);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'Apple', value: 'apple'},
+    {label: 'Banana', value: 'banana'},
+  ]);
   return (
-    <View>
-      <Text>Name: {user.name}</Text>
-      <Button
-        title="GO TO TRIP FILTER"
-        onPress={() => navigation.replace(TripFilter.name)}
-      />
-    </View>
+    <SafeAreaView>
+      <View style={styles.container}>
+        <View style={styles.title}>
+          <Title text={TripReview.title} />
+        </View>
+        <Title>Name: {TripFilter.name}</Title>
+        <View style={styles.dropdown}>
+          <DropDown
+            label="TRIP SELECTOR"
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+          />
+        </View>
+        <Button
+          title="GO TO TRIP FILTER"
+          onPress={() => navigation.replace(TripFilter.name)}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
 export default TripReviewPage;
+
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 16,
+    backgroundColor: 'white',
+  },
+  title: {
+    marginTop: 40,
+  },
+  dropdown: {
+    marginBottom: 40,
+    marginTop: 40,
+  },
+});

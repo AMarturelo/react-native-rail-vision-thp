@@ -14,12 +14,12 @@ const MyStack = () => {
         <Stack.Screen
           name={TripReview.name}
           component={TripReview.component}
-          options={{title: TripReview.title}}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name={TripFilter.name}
           component={TripFilter.component}
-          options={{title: TripFilter.title}}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>
