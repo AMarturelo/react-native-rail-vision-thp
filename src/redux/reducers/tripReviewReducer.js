@@ -1,6 +1,6 @@
 const inititalState = {
   loading: false,
-  data: {},
+  tripReviews: [],
   error: null,
 };
 const tripReviewReducer = (state = inititalState, action) => {
@@ -13,12 +13,21 @@ const tripReviewReducer = (state = inititalState, action) => {
       console.log(action.response);
       const myMap = Object.entries(action.response).map(([key, value]) => {
         return {
-          label: key + 'Apple',
+          label:
+            key +
+            ' | ' +
+            Array.from(value.tripDetails)
+              .map(trip => trip.id)
+              .join(" - "),
           value: key + 'apple',
         };
       });
       console.log(myMap);
-      return {...state, loading: false, data: myMap};
+      return {
+        ...state,
+        loading: false,
+        tripReviews: myMap,
+      };
     }
     case 'FETCH_TRIP_REVIEW_FAILURE': {
       return {...state, error: action.error, loading: false};

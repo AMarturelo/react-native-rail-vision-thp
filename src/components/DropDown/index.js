@@ -1,46 +1,32 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import DropDownPicker from 'react-native-dropdown-picker';
-import {appColors} from '../../utils/appColors';
+import {Dropdown} from 'react-native-element-dropdown';
 
-export default function DropDown(props) {
-  const {open, value, items, setOpen, setValue, setItems, hint = ''} = props;
+export default function DropDownComponent(props) {
+  const {value, setValue, items, hint = ''} = props;
+
+  const renderHint = () => {
+    return <Text style={styles.hint}>{`${hint}`.toUpperCase()}</Text>;
+  };
+
   return (
-    <View>
-      <Text style={styles.hint}>{`${hint}`.toUpperCase()}</Text>
-      <DropDownPicker
-        open={open}
+    <View style={styles.container}>
+      {renderHint()}
+      <Dropdown
+        style={styles.dropdown}
+        placeholderStyle={styles.placeholderStyle}
+        selectedTextStyle={styles.selectedTextStyle}
+        iconStyle={styles.iconStyle}
+        data={items}
+        maxHeight={300}
+        labelField="label"
+        valueField="value"
+        itemTextStyle={styles.item}
+        placeholder={'Select item'}
         value={value}
-        items={items}
-        setOpen={setOpen}
-        setValue={setValue}
-        setItems={setItems}
-        textStyle={{
-          color: '#626E7B',
-          fontWeight: '500',
-          lineHeight: 24,
-          fontSize: 18,
+        onChange={item => {
+          setValue(item.value);
         }}
-        itemStyle={{justifyContent: 'flex-start', color: '#ad1919'}}
-        containerStyle={{height: 50, width: '100%'}}
-        style={{
-          overflow: 'hidden',
-          backgroundColor: appColors.dropDrownBackground,
-          borderRadius: 4,
-          borderTopStartRadius: 4,
-          borderTopEndRadius: 4,
-          borderBottomStartRadius: 4,
-          borderBottomEndRadius: 4,
-          borderColor: '#FFFFFF00',
-          borderWidth: 0,
-        }}
-        labelStyle={{
-          color: '#626E7B',
-          fontSize: 18,
-          fontWeight: '500',
-          lineHeight: 24,
-        }}
-        dropDownStyle={{backgroundColor: '#ad1919'}}
       />
     </View>
   );
@@ -54,5 +40,55 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     marginBottom: 8,
     color: '#97A1AA',
+  },
+  container: {
+    backgroundColor: 'white',
+  },
+  dropdown: {
+    backgroundColor: '#F8F9F9',
+    borderRadius: 4,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    borderTopStartRadius: 4,
+    borderTopEndRadius: 4,
+    borderBottomStartRadius: 4,
+    borderBottomEndRadius: 4,
+    borderColor: '#FFFFFF00',
+    borderWidth: 0,
+  },
+  icon: {
+    marginRight: 5,
+  },
+  label: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    left: 22,
+    top: 8,
+    zIndex: 999,
+    paddingHorizontal: 8,
+    fontSize: 14,
+  },
+  placeholderStyle: {
+    fontSize: 20,
+    color: '#B6BCC3',
+    fontWeight: '600',
+  },
+  selectedTextStyle: {
+    fontSize: 20,
+    color: '#626E7B',
+    fontWeight: '600',
+  },
+  item: {
+    padding: 4,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    color: '#626E7B',
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
   },
 });

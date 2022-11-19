@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {ActivityIndicator, SafeAreaView, StyleSheet, View} from 'react-native';
 import {TripFilter, TripReview} from '../../routing/routes';
 import Button from '../../components/Button';
@@ -11,17 +11,16 @@ import {fetchTripReviews} from './actions';
 import {reduxForm} from 'redux-form';
 
 const TripReviewScreen = ({navigation}) => {
-  const fetchTripReview = useSelector(state => state.tripReviewReducer);
-  const loading = useSelector(state => fetchTripReview.loading);
-  const data = useSelector(state => fetchTripReview.data);
+  const loading = useSelector(state => state.tripReviewReducer.loading);
+  const tripReviews = useSelector(state => state.tripReviewReducer.tripReviews);
   const dispatch = useDispatch();
 
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'Apple', value: 'apple'},
-    {label: 'Banana', value: 'banana'},
-  ]);
+  var [value, setValue] = useState(null);
+  var [items, setItems] = useState([]);
+
+  useEffect(() => {
+    setItems(tripReviews);
+  }, [tripReviews]);
 
   const onFetch = () => dispatch(fetchTripReviews());
 
@@ -34,15 +33,11 @@ const TripReviewScreen = ({navigation}) => {
         <View style={styles.dropdown}>
           <DropDown
             hint="TRIP SELECTOR"
-            open={open}
             value={value}
-            items={items}
-            setOpen={setOpen}
             setValue={setValue}
-            setItems={setItems}
+            items={items}
           />
         </View>
-        <Title text={'Hola ' + data} />
         <View style={styles.activityIndicator}>
           {loading ? (
             <ActivityIndicator size="large" color={Colors.green} />
