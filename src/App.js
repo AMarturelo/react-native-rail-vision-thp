@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import TripFilterPage from './page/TripFilterPage';
-import TripReviewPage from './page/TripReviewPage';
+import {TripReview, TripFilter} from './routing/routes';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,11 +10,15 @@ const MyStack = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="TripReviewPage"
-          component={TripReviewPage}
-          options={{title: 'TripReview'}}
+          name={TripReview.name}
+          component={TripReview.component}
+          options={{title: TripReview.title}}
         />
-        <Stack.Screen name="TripFilter" component={TripFilterPage} />
+        <Stack.Screen
+          name={TripFilter.name}
+          component={TripFilter.component}
+          options={{title: TripFilter.title}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
