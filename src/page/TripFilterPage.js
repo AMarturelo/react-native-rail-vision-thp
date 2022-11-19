@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useState} from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import {TripFilter} from '../routing/routes';
+import { TripFilter, TripReview } from "../routing/routes";
 import Title from '../components/Label';
 import DropDown from '../components/DropDown';
 import Button from '../components/Button';
@@ -20,10 +20,9 @@ const TripFilterPage = ({navigation}) => {
         <View style={styles.title}>
           <Title text={TripFilter.title} />
         </View>
-        <Title>Name: {TripFilter.name}</Title>
         <View style={styles.dropdown}>
           <DropDown
-            label="TRIP SELECTOR"
+            hint="TRIP SELECTOR"
             open={open}
             value={value}
             items={items}
@@ -34,7 +33,7 @@ const TripFilterPage = ({navigation}) => {
         </View>
         <Button
           title="GO TO TRIP REVIEW"
-          onPress={() => navigation.replace(TripFilter.name)}
+          onPress={() => navigation.replace(TripReview.name)}
         />
       </View>
     </SafeAreaView>

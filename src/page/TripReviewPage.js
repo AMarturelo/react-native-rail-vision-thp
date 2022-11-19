@@ -19,10 +19,9 @@ const TripReviewPage = ({navigation}) => {
         <View style={styles.title}>
           <Title text={TripReview.title} />
         </View>
-        <Title>Name: {TripFilter.name}</Title>
         <View style={styles.dropdown}>
           <DropDown
-            label="TRIP SELECTOR"
+            hint="TRIP SELECTOR"
             open={open}
             value={value}
             items={items}

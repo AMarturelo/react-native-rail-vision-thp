@@ -1,39 +1,53 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {appColors} from '../../utils/appColors';
 
 export default function DropDown(props) {
-  const {open, value, items, setOpen, setValue, setItems, label = ''} = props;
+  const {open, value, items, setOpen, setValue, setItems, hint = ''} = props;
   return (
     <View>
-      <Text style={styles.label}>{`${label}`.toUpperCase()}</Text>
+      <Text style={styles.hint}>{`${hint}`.toUpperCase()}</Text>
       <DropDownPicker
-        containerProps={{
-          height: open === true ? 220 : null,
-          backgroundColor: '#97A1AA',
-        }}
         open={open}
         value={value}
         items={items}
         setOpen={setOpen}
         setValue={setValue}
         setItems={setItems}
+        textStyle={{
+          color: '#626E7B',
+          fontWeight: '500',
+          lineHeight: 24,
+          fontSize: 18,
+        }}
+        itemStyle={{justifyContent: 'flex-start', color: '#ad1919'}}
+        containerStyle={{height: 50, width: '100%', marginBottom: 20}}
+        style={{
+          overflow: 'hidden',
+          backgroundColor: appColors.dropDrownBackground,
+          borderRadius: 4,
+          borderTopStartRadius: 4,
+          borderTopEndRadius: 4,
+          borderBottomStartRadius: 4,
+          borderBottomEndRadius: 4,
+          borderColor: '#FFFFFF00',
+          borderWidth: 0,
+        }}
+        labelStyle={{
+          color: '#626E7B',
+          fontSize: 18,
+          fontWeight: '500',
+          lineHeight: 24,
+        }}
+        dropDownStyle={{backgroundColor: '#ad1919'}}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 20,
-    marginHorizontal: 16,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: '#B20610',
-  },
-  label: {
+  hint: {
     fontSize: 14,
     lineHeight: 24,
     fontWeight: '600',
