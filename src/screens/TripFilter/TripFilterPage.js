@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {useState} from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import { TripFilter, TripReview } from "../routing/routes";
-import Title from '../components/Label';
-import DropDown from '../components/DropDown';
-import Button from '../components/Button';
+import { TripFilter, TripReview } from "../../routing/routes";
+import Title from '../../components/Label';
+import DropDown from '../../components/DropDown';
+import Button from '../../components/Button';
 
 const TripFilterPage = ({navigation}) => {
   const [open, setOpen] = useState(false);

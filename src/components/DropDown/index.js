@@ -22,7 +22,7 @@ export default function DropDown(props) {
           fontSize: 18,
         }}
         itemStyle={{justifyContent: 'flex-start', color: '#ad1919'}}
-        containerStyle={{height: 50, width: '100%', marginBottom: 20}}
+        containerStyle={{height: 50, width: '100%'}}
         style={{
           overflow: 'hidden',
           backgroundColor: appColors.dropDrownBackground,

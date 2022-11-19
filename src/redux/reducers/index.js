@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import userReducer from './userReducer';
+import tripReviewReducer from './tripReviewReducer';
+import {reducer as formReducer} from 'redux-form';
 
-const allReducers = combineReducers({
-  userReducer: userReducer,
+export const combinedReducers = combineReducers({
+  form: formReducer,
+  tripReviewReducer: tripReviewReducer,
 });
-
-export default allReducers;
