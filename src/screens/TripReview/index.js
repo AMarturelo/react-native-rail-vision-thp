@@ -7,17 +7,25 @@ import DropDown from '../../components/DropDown';
 import Title from '../../components/Label';
 import {useDispatch, useSelector} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {fetchTripReviews} from './actions';
 import {reduxForm} from 'redux-form';
 import ReviewComponent from '../../components/Review';
+import {fetchTripReviews} from '../../redux/actions/fetchTripReviews';
+import {selectTripReviews} from '../../redux/actions/selectTripReview';
 
 const TripReviewScreen = ({navigation}) => {
-  const loading = useSelector(state => state.tripReviewReducer.loading);
-  const tripReviews = useSelector(state => state.tripReviewReducer.tripReviews);
+  const tripSelected = useSelector(state => state.tripReviewReducer.value);
+  const loading = useSelector(state => state.fetchTripReviewReducer.loading);
+  const tripReviews = useSelector(
+    state => state.fetchTripReviewReducer.tripReviews,
+  );
   const dispatch = useDispatch();
 
   var [value, setValue] = useState(null);
   var [items, setItems] = useState([]);
+
+  useEffect(() => {
+    setItems(tripReviews);
+  }, [tripReviews]);
 
   useEffect(() => {
     setItems(tripReviews);
@@ -37,13 +45,17 @@ const TripReviewScreen = ({navigation}) => {
             value={value}
             setValue={setValue}
             items={items}
+            onChange={item => {
+              console.log('Selected' + item);
+              dispatch(selectTripReviews(item));
+            }}
           />
         </View>
-        {value != null ? (
+        {tripSelected?.value != null ? (
           <ReviewComponent
-            trip={value.tripDetails}
-            date={value.date}
-            averageSpeedInMph={value.averageSpeedInMph}
+            trip={tripSelected.value.tripDetails}
+            date={tripSelected.value.date}
+            averageSpeedInMph={tripSelected.value.averageSpeedInMph}
           />
         ) : null}
         <View style={styles.activityIndicator}>

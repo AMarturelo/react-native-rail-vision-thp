@@ -3,7 +3,7 @@ import React from 'react';
 import {Dropdown} from 'react-native-element-dropdown';
 
 export default function DropDownComponent(props) {
-  const {value, setValue, items, hint = ''} = props;
+  const {value, setValue, items, hint = '', onChange} = props;
 
   const renderHint = () => {
     return <Text style={styles.hint}>{`${hint}`.toUpperCase()}</Text>;
@@ -24,9 +24,7 @@ export default function DropDownComponent(props) {
         itemTextStyle={styles.item}
         placeholder={'Select item'}
         value={value}
-        onChange={item => {
-          setValue(item.value);
-        }}
+        onChange={onChange}
       />
     </View>
   );

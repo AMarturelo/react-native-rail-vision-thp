@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
 import fetchTripReviewReducer from './fetchTripReviewReducer';
 import {reducer as formReducer} from 'redux-form';
+import tripReviewReducer from './tripReviewReducer';
 
 export const combinedReducers = combineReducers({
   form: formReducer,
-  tripReviewReducer: fetchTripReviewReducer,
+  fetchTripReviewReducer: fetchTripReviewReducer,
+  tripReviewReducer: tripReviewReducer,
 });
