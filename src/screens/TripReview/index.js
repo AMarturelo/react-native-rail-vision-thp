@@ -28,8 +28,8 @@ const TripReviewScreen = ({navigation}) => {
   }, [tripReviews]);
 
   useEffect(() => {
-    setItems(tripReviews);
-  }, [tripReviews]);
+    setValue(tripSelected);
+  }, [tripSelected]);
 
   const onFetch = () => dispatch(fetchTripReviews());
 
