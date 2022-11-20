@@ -3,7 +3,6 @@ import {fetchTripReview} from '../../api/fetchTripReview';
 
 function* tripReviewAsync() {
   const response = yield fetchTripReview();
-  console.log(response)
   try {
     yield put({type: 'FETCH_TRIP_REVIEW_SUCCESS', response});
   } catch (error) {

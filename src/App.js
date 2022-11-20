@@ -3,7 +3,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {TripFilter, TripReview} from './routing/routes';
 import {Provider as ReduxProvider} from 'react-redux';
-import { store } from "./redux/store";
+import {persistor, store} from './redux/store';
+import { PersistGate } from "redux-persist/integration/react";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,7 +30,9 @@ const MyStack = () => {
 function App() {
   return (
     <ReduxProvider store={store}>
-      <MyStack />
+      <PersistGate loading={null} persistor={persistor}>
+        <MyStack />
+      </PersistGate>
     </ReduxProvider>
   );
 }

@@ -24,9 +24,7 @@ const TripReviewScreen = ({navigation}) => {
   var [items, setItems] = useState([]);
 
   useEffect(() => {
-    if (tripReviews.length === 0 || typeof tripReviews === 'undefined') {
-      onFetch();
-    }
+    onFetch();
   }, []);
 
   useEffect(() => {
@@ -63,7 +61,6 @@ const TripReviewScreen = ({navigation}) => {
             setValue={setValue}
             items={items}
             onChange={item => {
-              console.log('Selected' + item);
               dispatch(selectTripReview(item));
             }}
           />

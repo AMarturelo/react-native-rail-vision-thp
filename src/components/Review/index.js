@@ -1,11 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {dateFormat} from '../../utils/dateUtils';
 
 export default function ReviewComponent(props) {
   const {trip, date, averageSpeedInMph} = props;
   return (
     <View style={styles.container}>
-      <Text style={styles.date}>{date}</Text>
+      <Text style={styles.date}>{dateFormat(date)}</Text>
       <Text style={styles.duration}>
         {`TRIP duration 2:55h | AVG. Speed ${averageSpeedInMph}mph`}
       </Text>

@@ -1,11 +1,14 @@
 const inititalState = {
   loading: false,
-  tripReviews: [],
+  tripReviews: {},
   error: null,
 };
 const fetchTripReviewReducer = (state = inititalState, action) => {
+  console.log('Marturelo ' + JSON.stringify(action));
+
   switch (action.type) {
     case 'FETCH_TRIP_REVIEW_REQUEST': {
+
       return {...state, loading: true};
     }
     case 'FETCH_TRIP_REVIEW_SUCCESS': {
