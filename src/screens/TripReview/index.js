@@ -24,10 +24,10 @@ const TripReviewScreen = ({navigation}) => {
   var [items, setItems] = useState([]);
 
   useEffect(() => {
-    if (tripReviews.size === 0) {
+    if (tripReviews.length === 0 || typeof tripReviews === 'undefined') {
       onFetch();
     }
-  }, [tripReviews]);
+  }, []);
 
   useEffect(() => {
     const myMap = Object.entries(tripReviews).map(([key, value]) => {
