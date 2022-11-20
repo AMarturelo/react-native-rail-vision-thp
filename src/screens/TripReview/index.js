@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {fetchTripReviews} from './actions';
 import {reduxForm} from 'redux-form';
+import ReviewComponent from '../../components/Review';
 
 const TripReviewScreen = ({navigation}) => {
   const loading = useSelector(state => state.tripReviewReducer.loading);
@@ -38,6 +39,13 @@ const TripReviewScreen = ({navigation}) => {
             items={items}
           />
         </View>
+        {value != null ? (
+          <ReviewComponent
+            trip={value.tripDetails}
+            date={value.date}
+            averageSpeedInMph={value.averageSpeedInMph}
+          />
+        ) : null}
         <View style={styles.activityIndicator}>
           {loading ? (
             <ActivityIndicator size="large" color={Colors.green} />

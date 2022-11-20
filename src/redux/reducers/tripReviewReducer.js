@@ -19,7 +19,7 @@ const tripReviewReducer = (state = inititalState, action) => {
             Array.from(value.tripDetails)
               .map(trip => trip.id)
               .join(" - "),
-          value: key + 'apple',
+          value: value,
         };
       });
       console.log(myMap);

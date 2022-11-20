@@ -1,4 +1,4 @@
-const inititalState = {name: 'User 1', age: 23};
+const inititalState = {tripReview: null};
 const addUserReducer = (state = inititalState, action) => {
   switch (action.type) {
     case 'CHANGEUSERNAME': {
