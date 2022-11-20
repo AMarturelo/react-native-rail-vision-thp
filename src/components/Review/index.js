@@ -8,7 +8,9 @@ export default function ReviewComponent(props) {
     <View style={styles.container}>
       <Text style={styles.date}>{dateFormat(date)}</Text>
       <Text style={styles.duration}>
-        {`TRIP duration 2:55h | AVG. Speed ${averageSpeedInMph}mph`}
+        {`TRIP duration ${timeTravel(
+          trip,
+        )} | AVG. Speed ${averageSpeedInMph}mph`}
       </Text>
       <View
         style={{
@@ -18,6 +20,10 @@ export default function ReviewComponent(props) {
       </View>
     </View>
   );
+
+  function timeTravel(trip) {
+    return '2:55h';
+  }
 
   function renderStation(trip) {
     return (

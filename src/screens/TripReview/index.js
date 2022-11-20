@@ -73,9 +73,9 @@ const TripReviewScreen = ({navigation}) => {
           />
         ) : null}
         <View style={styles.activityIndicator}>
-          {loading ? (
+          {/*{loading ? (
             <ActivityIndicator size="large" color={Colors.green} />
-          ) : null}
+          ) : null}*/}
         </View>
         <Button
           title="GO TO TRIP FILTER"

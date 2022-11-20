@@ -4,7 +4,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {TripFilter, TripReview} from './routing/routes';
 import {Provider as ReduxProvider} from 'react-redux';
 import {persistor, store} from './redux/store';
-import { PersistGate } from "redux-persist/integration/react";
+import {PersistGate} from 'redux-persist/integration/react';
+import {ActivityIndicator} from 'react-native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,7 +32,9 @@ const MyStack = () => {
 function App() {
   return (
     <ReduxProvider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate
+        loading={<ActivityIndicator size="large" color={Colors.green} />}
+        persistor={persistor}>
         <MyStack />
       </PersistGate>
     </ReduxProvider>
