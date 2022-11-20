@@ -3,8 +3,8 @@ const inititalState = {
   tripReviews: [],
   error: null,
 };
-const tripReviewReducer = (state = inititalState, action) => {
-  console.log('tripReviewReducer ' + action.type);
+const fetchTripReviewReducer = (state = inititalState, action) => {
+  console.log('fetchTripReviewReducer ' + action.type);
   switch (action.type) {
     case 'FETCH_TRIP_REVIEW_REQUEST': {
       return {...state, loading: true};
@@ -35,4 +35,4 @@ const tripReviewReducer = (state = inititalState, action) => {
   }
   return state;
 };
-export default tripReviewReducer;
+export default fetchTripReviewReducer;
