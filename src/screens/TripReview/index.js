@@ -24,7 +24,18 @@ const TripReviewScreen = ({navigation}) => {
   var [items, setItems] = useState([]);
 
   useEffect(() => {
-    setItems(tripReviews);
+    const myMap = Object.entries(tripReviews).map(([key, value]) => {
+      return {
+        label:
+          key +
+          ' | ' +
+          Array.from(value.tripDetails)
+            .map(trip => trip.id)
+            .join(' - '),
+        value: value,
+      };
+    });
+    setItems(myMap);
   }, [tripReviews]);
 
   useEffect(() => {
