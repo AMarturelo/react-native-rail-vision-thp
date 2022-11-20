@@ -1,5 +1,5 @@
 import TripReviewPage from '../screens/TripReview';
-import TripFilterPage from '../screens/TripFilter/TripFilterPage';
+import TripFilterPage from '../screens/TripFilter';
 
 export const TripReview = {
   name: 'TripReview',

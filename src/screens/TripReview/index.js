@@ -10,7 +10,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {reduxForm} from 'redux-form';
 import ReviewComponent from '../../components/Review';
 import {fetchTripReviews} from '../../redux/actions/fetchTripReviews';
-import {selectTripReviews} from '../../redux/actions/selectTripReview';
+import {selectTripReview} from '../../redux/actions/selectTripReview';
 
 const TripReviewScreen = ({navigation}) => {
   const tripSelected = useSelector(state => state.tripReviewReducer.value);
@@ -22,6 +22,12 @@ const TripReviewScreen = ({navigation}) => {
 
   var [value, setValue] = useState(null);
   var [items, setItems] = useState([]);
+
+  useEffect(() => {
+    if (tripReviews.size === 0) {
+      onFetch();
+    }
+  }, [tripReviews]);
 
   useEffect(() => {
     const myMap = Object.entries(tripReviews).map(([key, value]) => {
@@ -58,7 +64,7 @@ const TripReviewScreen = ({navigation}) => {
             items={items}
             onChange={item => {
               console.log('Selected' + item);
-              dispatch(selectTripReviews(item));
+              dispatch(selectTripReview(item));
             }}
           />
         </View>
@@ -78,7 +84,7 @@ const TripReviewScreen = ({navigation}) => {
           title="GO TO TRIP FILTER"
           onPress={() => navigation.replace(TripFilter.name)}
         />
-        <Button title="FETCH" onPress={onFetch} />
+        {/*<Button title="FETCH" onPress={onFetch} />*/}
       </View>
     </SafeAreaView>
   );

@@ -4,7 +4,6 @@ const inititalState = {
   error: null,
 };
 const fetchTripReviewReducer = (state = inititalState, action) => {
-  console.log('fetchTripReviewReducer ' + action.type);
   switch (action.type) {
     case 'FETCH_TRIP_REVIEW_REQUEST': {
       return {...state, loading: true};
