@@ -11,6 +11,7 @@ const persistConfig = {
   storage: AsyncStorage,
   stateReconciler: autoMergeLevel2,
   timeout: null,
+  whitelist: ['fetchTripReviewReducer']
 };
 
 const persistedReducer = persistReducer(persistConfig, combinedReducers);

@@ -3,9 +3,11 @@ import React from 'react';
 
 export default function ReviewComponent(props) {
   const {trip} = props;
+  console.log("as"+trip);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.date}>{"Hola"+trip.formattedDate()}</Text>
+      <Text style={styles.date}>{trip.formattedDate()}</Text>
       <Text style={styles.duration}>
         {`TRIP duration ${trip.formattedDuration()} | AVG. Speed ${trip.formattedSpeed()}`}
       </Text>
@@ -13,17 +15,17 @@ export default function ReviewComponent(props) {
         style={{
           marginTop: 32,
         }}>
-        {Array.from(trip.tripDetails).map(value => renderStation(value))}
+        {Array.from(trip.tripDetails).map(stop => renderStation(stop))}
       </View>
     </View>
   );
 
-  function renderStation(trip) {
+  function renderStation(stop) {
     return (
       <View
         style={{
-          marginBottom: trip.arrivedTime == null ? 16 : 0,
-          marginTop: trip.departedTime == null ? 16 : 0,
+          marginBottom: stop.arrivedTime == null ? 16 : 0,
+          marginTop: stop.departedTime == null ? 16 : 0,
           alignItems: 'center',
           flexDirection: 'row',
           paddingVertical: 8,
@@ -33,21 +35,14 @@ export default function ReviewComponent(props) {
             fontSize: 18,
             color: '#060F1A',
           }}>
-          {trip.id + ' - ' + trip.name + ' | '}
+          {stop.id + ' - ' + stop.name + ' | '}
         </Text>
-        {renderStops(trip)}
+        {renderStops(stop)}
       </View>
     );
   }
 
-  function renderStops(props) {
-    const list = [];
-    if (props.arrivedTime != null) {
-      list.push('Arrived ' + props.arrivedTime);
-    }
-    if (props.departedTime != null) {
-      list.push('Departed ' + props.departedTime);
-    }
+  function renderStops(stop) {
     return (
       <View
         style={{
@@ -58,7 +53,7 @@ export default function ReviewComponent(props) {
             fontSize: 14,
             color: '#626E7B',
           }}>
-          {list.join(' | ')}
+          {stop.concatDepartedArrived()}
         </Text>
         {}
       </View>

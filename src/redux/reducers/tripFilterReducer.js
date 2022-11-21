@@ -1,3 +1,5 @@
+import {Trip} from '../../models/Trip';
+
 const inititalState = {filter: null, trip: null};
 const tripReviewReducer = (state = inititalState, action) => {
   switch (action.type) {
@@ -6,7 +8,7 @@ const tripReviewReducer = (state = inititalState, action) => {
       return {
         ...state,
         filter: action.filter,
-        trip: {
+        trip: new Trip({
           date: '2022-02-01',
           averageSpeedInMph: 55,
           tripDetails: [
@@ -29,7 +31,7 @@ const tripReviewReducer = (state = inititalState, action) => {
               departedTime: null,
             },
           ],
-        },
+        }),
       };
     }
   }

@@ -24,9 +24,7 @@ const TripFilterScreen = ({navigation}) => {
     state => state.fetchTripReviewReducer.tripReviews,
   );
 
-  const tripFilterSelected = useSelector(
-    state => state.tripFilterReducer.filter,
-  );
+  const filterSelected = useSelector(state => state.tripFilterReducer.filter);
 
   const tripFilter = useSelector(state => state.tripFilterReducer.trip);
 
@@ -36,8 +34,8 @@ const TripFilterScreen = ({navigation}) => {
   var [items, setItems] = useState([]);
 
   useEffect(() => {
-    setValue(tripFilterSelected);
-  }, [tripFilterSelected]);
+    setValue(filterSelected);
+  }, [filterSelected]);
 
   return (
     <SafeAreaView>
@@ -56,13 +54,7 @@ const TripFilterScreen = ({navigation}) => {
             }}
           />
         </View>
-        {tripFilter != null ? (
-          <ReviewComponent
-            trip={tripFilter.tripDetails}
-            date={tripFilter.date}
-            averageSpeedInMph={tripFilter.averageSpeedInMph}
-          />
-        ) : null}
+        {tripFilter != null ? <ReviewComponent trip={tripFilter} /> : null}
         <View
           style={{
             height: 40,
