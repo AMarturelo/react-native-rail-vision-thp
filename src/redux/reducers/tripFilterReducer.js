@@ -15,53 +15,29 @@ const tripReviewReducer = (state = inititalState, action) => {
           break;
         }
         case '2': {
-          //Longest Trip by Duration
+          //Shortest Trip by Duration
           trip = shortestTripByDuration(values);
           break;
         }
+        case '3': {
+          //Highest Speed Trip
+          trip = highestSpeedTrip(values);
+          break;
+        }
+        case '4': {
+          //Lowest Speed Trip
+          trip = lowestSpeedTrip(values);
+          break;
+        }
+        case '5': {
+          //Most Number of Stops
+          trip = mostNumberOfStops(values);
+          break;
+        }
         default: {
-          trip = new Trip({
-            date: '2022-08-11',
-            averageSpeedInMph: 75,
-            tripDetails: [
-              {
-                id: 'TRTO',
-                name: 'Toronto',
-                arrivedTime: null,
-                departedTime: '09:41',
-              },
-              {
-                id: 'GUIL',
-                name: 'Guildwood',
-                arrivedTime: '11:00',
-                departedTime: '11:05',
-              },
-              {
-                id: 'OSHA',
-                name: 'Oshawa',
-                arrivedTime: '12:10',
-                departedTime: '12:11',
-              },
-              {
-                id: 'PHOP',
-                name: 'Port Hope',
-                arrivedTime: '13:20',
-                departedTime: '13:24',
-              },
-              {
-                id: 'CBRG',
-                name: 'Coburg',
-                arrivedTime: '14:45',
-                departedTime: '14:46',
-              },
-              {
-                id: 'KGOB',
-                name: 'Kingston',
-                arrivedTime: '15:02',
-                departedTime: null,
-              },
-            ],
-          });
+          //Least Number of Stops
+          trip = leastNumberOfStops(values);
+          break;
         }
       }
 
@@ -89,6 +65,46 @@ function shortestTripByDuration(values) {
   let trip = values[0];
   values.forEach(value => {
     if (value.durationM() < trip?.durationM() ?? 0) {
+      trip = value;
+    }
+  });
+  return trip;
+}
+
+function highestSpeedTrip(values) {
+  let trip = values[0];
+  values.forEach(value => {
+    if (value.averageSpeedInMph > trip?.averageSpeedInMph ?? 0) {
+      trip = value;
+    }
+  });
+  return trip;
+}
+
+function lowestSpeedTrip(values) {
+  let trip = values[0];
+  values.forEach(value => {
+    if (value.averageSpeedInMph < trip?.averageSpeedInMph ?? 0) {
+      trip = value;
+    }
+  });
+  return trip;
+}
+
+function mostNumberOfStops(values) {
+  let trip = values[0];
+  values.forEach(value => {
+    if (value.tripDetails.length > trip?.tripDetails.length ?? 0) {
+      trip = value;
+    }
+  });
+  return trip;
+}
+
+function leastNumberOfStops(values) {
+  let trip = values[0];
+  values.forEach(value => {
+    if (value.tripDetails.length < trip?.tripDetails.length ?? 0) {
       trip = value;
     }
   });
