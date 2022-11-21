@@ -1,29 +1,22 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {dateFormat} from '../../utils/dateUtils';
 
 export default function ReviewComponent(props) {
-  const {trip, date, averageSpeedInMph} = props;
+  const {trip} = props;
   return (
     <View style={styles.container}>
-      <Text style={styles.date}>{dateFormat(date)}</Text>
+      <Text style={styles.date}>{"Hola"+trip.formattedDate()}</Text>
       <Text style={styles.duration}>
-        {`TRIP duration ${timeTravel(
-          trip,
-        )} | AVG. Speed ${averageSpeedInMph}mph`}
+        {`TRIP duration ${trip.formattedDuration()} | AVG. Speed ${trip.formattedSpeed()}`}
       </Text>
       <View
         style={{
           marginTop: 32,
         }}>
-        {Array.from(trip).map(value => renderStation(value))}
+        {Array.from(trip.tripDetails).map(value => renderStation(value))}
       </View>
     </View>
   );
-
-  function timeTravel(trip) {
-    return '2:55h';
-  }
 
   function renderStation(trip) {
     return (

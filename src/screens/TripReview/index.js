@@ -1,16 +1,16 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import {ActivityIndicator, SafeAreaView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {TripFilter, TripReview} from '../../routing/routes';
 import Button from '../../components/Button';
 import DropDown from '../../components/DropDown';
 import Title from '../../components/Label';
 import {useDispatch, useSelector} from 'react-redux';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {reduxForm} from 'redux-form';
 import ReviewComponent from '../../components/Review';
 import {fetchTripReviews} from '../../redux/actions/fetchTripReviews';
 import {selectTripReview} from '../../redux/actions/selectTripReview';
+import {Trip} from '../../models/Trip';
 
 const TripReviewScreen = ({navigation}) => {
   const tripSelected = useSelector(state => state.tripReviewReducer.value);
@@ -29,6 +29,7 @@ const TripReviewScreen = ({navigation}) => {
 
   useEffect(() => {
     const myMap = Object.entries(tripReviews).map(([key, value]) => {
+      const trip = new Trip(value);
       return {
         label:
           key +
@@ -36,7 +37,7 @@ const TripReviewScreen = ({navigation}) => {
           Array.from(value.tripDetails)
             .map(trip => trip.id)
             .join(' - '),
-        value: value,
+        value: trip,
       };
     });
     setItems(myMap);
@@ -66,11 +67,7 @@ const TripReviewScreen = ({navigation}) => {
           />
         </View>
         {tripSelected?.value != null ? (
-          <ReviewComponent
-            trip={tripSelected.value.tripDetails}
-            date={tripSelected.value.date}
-            averageSpeedInMph={tripSelected.value.averageSpeedInMph}
-          />
+          <ReviewComponent trip={tripSelected.value} />
         ) : null}
         <View style={styles.activityIndicator}>
           {/*{loading ? (
