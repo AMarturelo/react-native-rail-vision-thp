@@ -1,4 +1,4 @@
-import {dateFormat} from '../utils/dateUtils';
+import {dateFormat, getMinutesDiff} from '../utils/dateUtils';
 
 export class Trip {
   constructor(json) {
@@ -17,6 +17,19 @@ export class Trip {
     return dateFormat(this.date);
   }
 
+  durationM() {
+    const departedTimeDate = Date.parse(
+      this.date + ' ' + this.tripDetails[0].departedTime,
+    );
+    const arrivedTimeDate = Date.parse(
+      this.date +
+        ' ' +
+        this.tripDetails[this.tripDetails.length - 1].arrivedTime,
+    );
+
+    return getMinutesDiff(departedTimeDate, arrivedTimeDate);
+  }
+
   formattedDuration() {
     const departedTimeDate = Date.parse(
       this.date + ' ' + this.tripDetails[0].departedTime,
@@ -27,12 +40,7 @@ export class Trip {
         this.tripDetails[this.tripDetails.length - 1].arrivedTime,
     );
 
-    return this.getHoursDiff(departedTimeDate, arrivedTimeDate) + 'H';
-  }
-
-  getHoursDiff(startDate, endDate) {
-    const diff = Math.abs(endDate - startDate);
-    const minutes = Math.floor(diff / 1000 / 60);
+    const minutes = getMinutesDiff(departedTimeDate, arrivedTimeDate);
     const hours = Math.floor(minutes / 60);
     const rest = minutes - hours * 60;
     return hours + ':' + rest;

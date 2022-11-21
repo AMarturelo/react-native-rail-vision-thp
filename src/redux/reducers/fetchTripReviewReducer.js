@@ -4,8 +4,6 @@ const inititalState = {
   error: null,
 };
 const fetchTripReviewReducer = (state = inititalState, action) => {
-  console.log('Marturelo ' + JSON.stringify(action));
-
   switch (action.type) {
     case 'FETCH_TRIP_REVIEW_REQUEST': {
 
